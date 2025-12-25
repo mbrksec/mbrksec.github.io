@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Mesajım Var</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8a5c2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+    
+        .heart {
+            position: absolute;
+            color: #e66767;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+
+        .card {
+            background: white;
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            z-index: 10;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 450px;
+            cursor: pointer;
+            position: relative;
+        }
+
+
+        .card.active {
+            max-width: 850px;
+        }
+
+    
+        .image-side {
+            width: 400px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .image-side img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+ 
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #d63031;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .card.active .overlay-text {
+            opacity: 0;
+        }
+
+
+        .text-side {
+            width: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.8s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 0;
+        }
+
+        .card.active .text-side {
+            width: 400px;
+            opacity: 1;
+            padding-left: 30px;
+        }
+
+        h1 {
+            color: #d63031;
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        p {
+            color: #2d3436;
+            line-height: 1.6;
+            font-size: 16px;
+            min-width: 300px;
+        }
+
+
+        @media (max-width: 768px) {
+            .card { flex-direction: column; align-items: center; }
+            .card.active { max-width: 90%; }
+            .image-side { width: 100%; }
+            .card.active .text-side { width: 100%; padding-left: 0; padding-top: 20px; }
+            .text-side { height: 0; }
+            .card.active .text-side { height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hearts-container"></div>
+
+    <div class="card" onclick="this.classList.toggle('active')">
+        <div class="image-side">
+            <img src="https://i.hizliresim.com/dm8rxe5.jpeg" alt="Bizim Fotoğrafımız">
+            <div class="overlay-text">TIKLA ❤️</div>
+        </div>
+        <div class="text-side">
+            <h1>BİRİCİK SEVGİLİM<br>HAYAT ARKADAŞIM</h1>
+            <p>
+                Geçen yılın tüm yorgunluğunu senin bir gülüşünle unuttum. 
+                2026'ya seninle girmek, önümüzdeki 365 günün ne kadar 
+                güzel geçeceğinin garantisi gibi. Yeni yılda da en güzel 
+                anılarımızı birlikte biriktirelim. İyi ki varsın <b>Seni Çok Seviyorum.</b>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('hearts-container');
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            container.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
