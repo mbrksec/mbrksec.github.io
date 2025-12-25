@@ -17,7 +17,6 @@
             overflow: hidden;
         }
 
-    
         .heart {
             position: absolute;
             color: #e66767;
@@ -31,7 +30,6 @@
             0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
-
 
         .card {
             background: white;
@@ -47,12 +45,10 @@
             position: relative;
         }
 
-
         .card.active {
             max-width: 850px;
         }
 
-    
         .image-side {
             width: 400px;
             flex-shrink: 0;
@@ -66,7 +62,6 @@
             display: block;
         }
 
- 
         .overlay-text {
             position: absolute;
             top: 50%;
@@ -84,7 +79,6 @@
         .card.active .overlay-text {
             opacity: 0;
         }
-
 
         .text-side {
             width: 0;
@@ -118,7 +112,6 @@
             min-width: 300px;
         }
 
-
         @media (max-width: 768px) {
             .card { flex-direction: column; align-items: center; }
             .card.active { max-width: 90%; }
@@ -133,7 +126,13 @@
 
     <div id="hearts-container"></div>
 
-    <div class="card" onclick="this.classList.toggle('active')">
+    <iframe id="youtubeMuzik" 
+            style="position: absolute; width: 0; height: 0; border: 0; pointer-events: none;" 
+            src="" 
+            allow="autoplay">
+    </iframe>
+
+    <div class="card" id="mesajKarti">
         <div class="image-side">
             <img src="https://i.hizliresim.com/dm8rxe5.jpeg" alt="Bizim Fotoğrafımız">
             <div class="overlay-text">TIKLA ❤️</div>
@@ -144,13 +143,16 @@
                 Geçen yılın tüm yorgunluğunu senin bir gülüşünle unuttum. 
                 2026'ya seninle girmek, önümüzdeki 365 günün ne kadar 
                 güzel geçeceğinin garantisi gibi. Yeni yılda da en güzel 
-                anılarımızı birlikte biriktirelim. İyi ki varsın <b>Seni Çok Seviyorum.</b>
+                anılarımızı birlikte biriktirelim. İyi ki varsın <b>Seni Çok Seviyorum.</b>Gözlerindeki ışık, benim yolumu aydınlatan en parlak yıldız. Bu yıl ve bundan sonraki tüm yıllar, sadece seninle ve senin sevginle anlam kazansın. Yanımda olduğun için, beni ben olduğum için sevdiğin için teşekkür ederim. Hayat boyu sürecek olan o büyük maceramızın bu yeni yılı kutlu olsun balımm.
             </p>
         </div>
     </div>
 
     <script>
         const container = document.getElementById('hearts-container');
+        const kart = document.getElementById('mesajKarti');
+        const muzikPlayer = document.getElementById('youtubeMuzik');
+
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
@@ -161,6 +163,18 @@
             setTimeout(() => { heart.remove(); }, 5000);
         }
         setInterval(createHeart, 400);
+
+
+        kart.addEventListener('click', function() {
+            this.classList.toggle('active');
+            
+            if (this.classList.contains('active')) {
+
+                muzikPlayer.src = "https://www.youtube.com/embed/OqR4el5e880?autoplay=1&loop=1&playlist=OqR4el5e880&controls=0";
+            } else {
+                muzikPlayer.src = "";
+            }
+        });
     </script>
 </body>
 </html>
