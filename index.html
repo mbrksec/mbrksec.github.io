@@ -1,134 +1,199 @@
 <!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUR4K Blog | Anasayfa</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f3f3f3;
-            color: #333;
-        }
-        .header {
-            background-color: #6d7a53;
-            color: #fff;
-            padding: 1em 0;
-            text-align: center;
-        }
-        .header h1 {
-            margin: 0;
-        }
-        .nav {
-            background-color: #444;
-            color: #fff;
-            padding: 0.5em 0;
-        }
-        .nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-        }
-        .nav li {
-            display: inline-block;
-            margin: 0 15px;
-        }
-        .nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .post {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
-        .post:last-child {
-            border-bottom: none;
-        }
-        .post h2 {
-            color: #007BFF;
-        }
-        .post-meta {
-            color: #888;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        .post-meta a {
-            color: #888;
-            text-decoration: none;
-        }
-        .read-more {
-            display: inline-block;
-            margin-top: 10px;
-            color: #007BFF;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: #fff;
-            margin-top: 20px;
-        }
+<html lang="en">
 
-   </style>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Burak Dinleyici | Cyber Security Enthusiast</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Poppins:300,400,500,600,700" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <style>
+    /* CSS TEMELLERİ */
+    :root { --main-blue: #0563bb; --sidebar-bg: #040b14; }
+    body { font-family: "Open Sans", sans-serif; color: #272829; background-color: #f5f8fd; overflow-x: hidden; }
+    a { color: var(--main-blue); text-decoration: none; }
+
+    /* Sidebar (Yan Menü) */
+    #header {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 300px;
+      transition: all 0.5s; z-index: 9997; padding: 0 15px;
+      background: var(--sidebar-bg); overflow-y: auto;
+    }
+    #header .profile h1 { font-size: 24px; text-align: center; color: #fff; font-weight: 600; margin: 30px 0 10px 0; }
+    
+    .social-links a {
+      font-size: 18px; display: inline-block; background: #212431; color: #fff;
+      line-height: 1; padding: 8px 0; margin-right: 4px; border-radius: 50%;
+      text-align: center; width: 36px; height: 36px; transition: 0.3s;
+    }
+    .social-links a:hover { background: var(--main-blue); }
+
+    /* Navigasyon */
+    .nav-menu { padding: 30px 0 0 0; }
+    .nav-menu a { display: flex; align-items: center; color: #a8a9b4; padding: 12px 15px; font-size: 15px; transition: 0.3s; }
+    .nav-menu a i { font-size: 24px; padding-right: 8px; color: #6f7180; }
+    .nav-menu a:hover, .nav-menu .active { color: #fff; }
+    .nav-menu a:hover i, .nav-menu .active i { color: var(--main-blue); }
+
+    /* Hero Bölümü */
+    #hero {
+      width: 100%; height: 100vh;
+      background: linear-gradient(rgba(4, 11, 20, 0.7), rgba(4, 11, 20, 0.7)), 
+                  url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070');
+      background-size: cover; background-position: center; padding-left: 300px;
+    }
+    #hero h1 { font-size: 64px; font-weight: 700; color: #fff; margin: 0; }
+    #hero p { color: #fff; font-size: 26px; font-family: "Poppins", sans-serif; }
+    #hero p span { border-bottom: 3px solid var(--main-blue); }
+
+    /* İçerik Alanı */
+    #main { margin-left: 300px; }
+    section { padding: 60px 0; }
+    .section-title h2 { font-size: 32px; font-weight: bold; color: #173b6c; position: relative; padding-bottom: 20px; }
+    .section-title h2::after { content: ""; position: absolute; width: 50px; height: 3px; background: var(--main-blue); bottom: 0; left: 0; }
+
+    /* Liste Tasarımı */
+    .about .content ul { list-style: none; padding: 0; }
+    .about .content ul li { margin-bottom: 20px; display: flex; align-items: center; }
+    .about .content ul strong { margin-right: 10px; }
+
+    /* Yetenek Rozetleri */
+    .skill-badge {
+      display: inline-block; background: #e1efff; color: var(--main-blue);
+      padding: 6px 15px; border-radius: 50px; margin: 4px; font-weight: 600; font-size: 13px;
+    }
+
+    /* Mobil Görünüm */
+    @media (max-width: 992px) {
+      #header { left: -300px; }
+      #main, #hero { margin-left: 0; padding-left: 0; }
+      #hero h1 { font-size: 32px; }
+      #hero p { font-size: 18px; }
+    }
+  </style>
 </head>
+
 <body>
 
-    <header class="header">
-        <h1>BUR4K Blog</h1>
-        <body>
-	<!--  Css z-index  -->
-    </header>
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <h1 class="text-light">Burak Dinleyici</h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.linkedin.com/in/mustafa-burak-dinleyici-329416374/" target="_blank"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/mbrksec" target="_blank"><i class="bx bxl-github"></i></a>
+        </div>
+      </div>
 
-    <nav class="nav">
+      <nav id="navbar" class="nav-menu navbar">
         <ul>
-            <li><a href="#">Anasayfa</a></li>
-            <li><a href="#">Hakkında</a></li>
-            <li><a href="#">İletişim</a></li>
+          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-code-alt"></i> <span>Skills</span></a></li>
         </ul>
-    </nav>
+      </nav>
+    </div>
+  </header>
 
-    <main class="container">
-        <article class="post">
-            <h2>İlk Blog Yazısı Başlığı</h2>
-            <div class="post-meta">
-                Yazan: <a href="#">Yazar Adı</a> | Tarih: 10 Ekim 2025 | Kategori: <a href="#">Teknoloji</a>
-            </div>
-            <p>
-                Bu, blog sayfasındaki ilk yazının giriş paragrafıdır. Burada yazının kısa bir özeti yer alır. Okuyucuyu makalenin devamını okumaya teşvik etmek için ilgi çekici bir cümleyle başlanabilir.
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="hero-container" data-aos="fade-in">
+      <h1>Burak Dinleyici</h1>
+      <p>I am <span class="typed" data-typed-items="a Computer Programming Student, a Bug Bounty Hunter, a Cybersecurity Learner, an Aspiring Developer"></span></p>
+    </div>
+  </section>
+
+  <main id="main">
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>About Me</h2>
+          <p>
+            I am a <strong>Computer Programming student at Çukurova University</strong>. 
+            Currently, I am focusing all my energy on professional growth in <strong>cybersecurity</strong> and <strong>bug hunting</strong>. 
+            I am dedicated to discovering system vulnerabilities and learning the intricacies of web security.
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 content" data-aos="fade-up">
+            <h3>Cyber Security Enthusiast & Developer</h3>
+            <p class="fst-italic">
+              Constantly learning and researching to stay ahead in the world of information security.
             </p>
-            <a href="#" class="read-more">Devamını Oku &raquo;</a>
-        </article>
-
-        <article class="post">
-            <h2>İkinci Blog Yazısı Başlığı</h2>
-            <div class="post-meta">
-                Yazan: <a href="#">Yazar Adı</a> | Tarih: 09 Ekim 2025 | Kategori: <a href="#">Yaşam</a>
+            <div class="row mt-4">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Education:</strong> <span>Çukurova University (Computer Programming)</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Status:</strong> <span>Full-time Student & Independent Learner</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Specialization:</strong> <span>Web Security & Bug Hunting</span></li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Hatay, Türkiye</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>mburak@wearehackerone.com</span></li>
+                </ul>
+              </div>
             </div>
-            <p>
-                Bu, blog sayfasındaki ikinci yazının giriş paragrafıdır. Blogunuzdaki her makale bu yapıya uygun olarak listelenebilir. Daha fazla içerik ekledikçe sayfa aşağı doğru uzayacaktır.
+            <p class="mt-3">
+              I spend my time participating in CTFs, researching the <strong>OWASP Top 10</strong>, and practicing penetration testing techniques. 
+              Even though I am currently a full-time student, I am actively building my portfolio by developing secure applications and hunting for bugs on various platforms.
             </p>
-            <a href="#" class="read-more">Devamını Oku &raquo;</a>
-        </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </main>
+    <section id="skills" class="skills section-bg">
+      <div class="container">
+        <div class="section-title">
+          <h2>Skills & Interests</h2>
+        </div>
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12">
+            <span class="skill-badge">Web Security</span>
+            <span class="skill-badge">Bug Hunting</span>
+            <span class="skill-badge">OWASP Top 10</span>
+            <span class="skill-badge">Pentesting</span>
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">HTML/CSS</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">SQL</span>
+            <span class="skill-badge">Linux</span>
+            <span class="skill-badge">CTF Participant</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <footer class="footer">
-        <p>&copy; 2025 bur4k.com.tr Tüm Hakları Saklıdır.</p>
-    </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+  <script>
+    (function() {
+      "use strict";
+      AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+
+      const typed = document.querySelector('.typed');
+      if (typed) {
+        let items = typed.getAttribute('data-typed-items').split(',');
+        new Typed('.typed', {
+          strings: items,
+          loop: true,
+          typeSpeed: 70,
+          backSpeed: 40,
+          backDelay: 2000
+        });
+      }
+    })();
+  </script>
 
 </body>
 </html>
